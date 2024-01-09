@@ -12,15 +12,15 @@
     </header>
 
     <h2>書籍変更</h2>
-    <form id="editForm" action="/bookapp/fc/ad-book/edit-confirm" method="post">
+    <form id="editForm" action="/books_update/{id}" method="post">
         <input type="hidden" name="id" value="book.id">
-        <table border="1" class="LibraryBooks">
-            <tr><th>書籍名</th><td id="bookNameCell"></td></tr>
-            <tr><th>出版社</th><td id="publisherCell"></td></tr>
-            <tr><th>著者</th><td id="authorCell"></td></tr>
-            <tr><th>ページ数</th><td id="pageCountCell"></td></tr>
-            <tr><th>出版日</th><td id="publishedDateCell"></td></tr>
-            <tr><th>価格(税込)</th><td id="priceCell"></td></tr>
+        <table border="1">
+            <tr><th>書籍名</th><td><input type="text" name="name"></td></tr>
+            <tr><th>出版社</th><td><input type="text" name="publisher"></td></tr>
+            <tr><th>著者</th><td><input type="text" name="author"></td></tr>
+            <tr><th>ページ数</th><td><input type="text" name="page_count"></td></tr>
+            <tr><th>出版日</th><td><input type="text" name="published_date"></td></tr>
+            <tr><th>価格(税込)</th><td><input type="text" name="price"></td></tr>
         </table>
         <input type="submit" value="変更">
     </form>
