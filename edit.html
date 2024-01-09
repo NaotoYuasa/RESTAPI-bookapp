@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>書籍変更</title>
+    <!-- <link rel="stylesheet" type="text/css" href="/bookapp/css/style.css" /> -->
+    <script src="js/bookList.js"></script>
+</head>
+<body onload="getAllData()">
+    <header>
+        <!-- Include your header content here -->
+    </header>
+
+    <h2>書籍変更</h2>
+    <form id="editForm" action="/bookapp/fc/ad-book/edit-confirm" method="post">
+        <input type="hidden" name="id" value="book.id">
+        <table border="1" class="LibraryBooks">
+            <tr><th>書籍名</th><td id="bookNameCell"></td></tr>
+            <tr><th>出版社</th><td id="publisherCell"></td></tr>
+            <tr><th>著者</th><td id="authorCell"></td></tr>
+            <tr><th>ページ数</th><td id="pageCountCell"></td></tr>
+            <tr><th>出版日</th><td id="publishedDateCell"></td></tr>
+            <tr><th>価格(税込)</th><td id="priceCell"></td></tr>
+        </table>
+        <input type="submit" value="変更">
+    </form>
+
+    <div>
+        <button onclick="history.back()">戻る</button>
+    </div>
+</body>
+</html>

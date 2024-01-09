@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>書籍登録</title>
+    <link rel="stylesheet" type="text/css" href="/bookapp/css/style.css" />
+</head>
+<body>
+    <header>
+        <!-- Include your header content here -->
+    </header>
+
+    <script>
+        // Function to display error messages
+        function displayErrorMessages() {
+            const errorMessages = <%= request.getAttribute("errorMsg") %>;
+
+            if (errorMessages && errorMessages.length > 0) {
+                const errorList = document.createElement('ul');
+                errorMessages.forEach(msg => {
+                    const listItem = document.createElement('li');
+                    listItem.style.color = 'red';
+                    listItem.textContent = msg;
+                    errorList.appendChild(listItem);
+                });
+                document.body.appendChild(errorList);
+            }
+        }
+
+        // Call the function to display error messages
+        displayErrorMessages();
+    </script>
+
+    <h2>書籍登録フォーム</h2>
+    <form id="bookForm" action="/bookapp/fc/ad-book/entry-confirm" method="post">
+        <table class="bookform" border="1">
+            <tr><th>書籍名</th><td><input type="text" name="name"></td></tr>
+            <tr><th>出版社</th><td><input type="text" name="publisher"></td></tr>
+            <tr><th>著者</th><td><input type="text" name="author"></td></tr>
+            <tr><th>ISBN※ハイフンを除く</th><td><input type="text" name="isbn" size="13"></td></tr>
+            <tr><th>ページ数</th><td><input type="text" name="pageCount"></td></tr>
+            <tr><th>出版日</th><td><input type="text" name="publishedDate"></td></tr>
+            <tr><th>価格(税込)</th><td><input type="text" name="price"></td></tr>
+        </table>
+        <input type="submit" value="登録">
+    </form>
+    <div><button onclick="history.back()">戻る</button></div>
+</body>
+</html>
