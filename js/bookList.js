@@ -23,7 +23,6 @@ function getData() {
     const bookList = document.getElementById('LibraryBooks');
 
     fetch('http://127.168.0.100:8000/list')
-<<<<<<< HEAD
     .then((res) => res.json())
     .then((list) => {
         list.forEach(book => {
@@ -36,7 +35,6 @@ function getData() {
     });
     })
     .catch((err) => console.log(err))
-=======
         .then((res) => res.json())
         .then((list) => {
             list.forEach(book => {
@@ -66,5 +64,4 @@ function getData() {
             });
         })
         .catch((err) => console.log(err));
->>>>>>> f9fdd938e7852c222e9be74d869640d9a051e543
 }
