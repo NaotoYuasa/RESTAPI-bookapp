@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>書籍削除</title>
-    <link rel="stylesheet" type="text/css" href="/bookapp/css/style.css" />
+    <script src="js/bookList.js"></script>
 </head>
 <body>
+
     <header>
         <!-- Include your header content here -->
     </header>
@@ -14,22 +15,19 @@
 
     <div id="deleteConfirmation">
         <p id="confirmationMessage">以下を削除します。よろしいでしょうか。</p>
-        <form id="deleteForm" action="/bookapp/fc/ad-book/delete-do" method="post">
+        <form id="deleteForm" action="/bookapp/" method="post">
             <input type="hidden" name="id" value="<%= book.getId() %>">
             <table border="1">
                 <tr><th>書籍名</th><td id="bookName"><%= book.getName() %></td></tr>
                 <tr><th>出版社</th><td id="bookPublisher"><%= book.getPublisher() %></td></tr>
                 <tr><th>著者</th><td id="bookAuthor"><%= book.getAuthor() %></td></tr>
-                <tr><th>ISBN</th><td id="bookIsbn"><%= book.getIsbn() %></td></tr>
                 <tr><th>ページ数</th><td id="bookPageCount"><%= book.getPageCount() %></td></tr>
                 <tr><th>出版日</th><td id="bookPublishedDate"><%= book.getPublishedDate() %></td></tr>
                 <tr><th>価格(税込)</th><td id="bookPrice"><%= book.getPrice() %></td></tr>
-                <tr><th>登録日</th><td id="bookCreatedAt"><%= book.getCreatedAtStr() %></td></tr>
             </table>
             <input type="submit" value="削除">
         </form>
     </div>
-
     <div>
         <button onclick="history.back()">戻る</button>
     </div>
