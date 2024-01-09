@@ -1,10 +1,20 @@
-//本の新規登録用のモーダルを開く(フォーム入力された確認画面)
-function openModalRegister(){
+window.onload = function() {
+    // 変更: URLからidを抽出してhidden inputのvalueに設定
+    var url = new URL(window.location.href);
+    var bookId = url.searchParams.get("id");
+    document.getElementById('bookId').value = bookId;
+};
+
+// 変更: idを取得して送信処理を実行
+function openModalEdit() {
+    // var bookId = document.getElementById('bookId').value;
+
     // モーダルを表示する
     document.getElementById('myModal').style.display = 'block';
 
     // フォームデータでモーダルを埋める
     var formData = {
+        id: document.getElementById('bookId').value,
         name: document.getElementById('name').value,
         publisher: document.getElementById('publisher').value,
         author: document.getElementById('author').value,
@@ -22,7 +32,7 @@ function openModalRegister(){
     }
 }
 
-function closeModalRegister() {
+function closeModalEdit() {
     // Close the modal
     document.getElementById('myModal').style.display = 'none';
 }
@@ -31,6 +41,7 @@ function submitForm() {
     // You can add your code here to send the JSON data to the server using AJAX
     // For simplicity, let's just log the JSON data to the console
     var formData = {
+        id: document.getElementById('bookId').value,
         name: document.getElementById('name').value,
         publisher: document.getElementById('publisher').value,
         author: document.getElementById('author').value,
@@ -46,7 +57,7 @@ function submitForm() {
 
     // AJAXを使用してサーバーにデータを送信
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.168.0.100:8000/books_regist", true);
+    xhr.open("POST", "http://127.168.0.100:8000/books_update/"+ encodeURIComponent(formData.id), true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
     xhr.onreadystatechange = function () {
@@ -55,17 +66,17 @@ function submitForm() {
             console.log(xhr.responseText);
 
              // 登録完了モーダルを表示
-             document.getElementById('registerCompleteModal').style.display = 'block';
+             document.getElementById('editCompleteModal').style.display = 'block';
         }
     };
 
     xhr.send(jsonData);
 
     // Close the modal after submitting
-    closeModalRegister();
+    closeModalEdit();
 }
 
-function closeRegisterCompleteModal() {
+function closeEditCompleteModal() {
     // Close the register complete modal
-    document.getElementById('registerCompleteModal').style.display = 'none';
+    document.getElementById('editCompleteModal').style.display = 'none';
 }
