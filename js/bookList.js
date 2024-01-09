@@ -23,6 +23,20 @@ function getData() {
     const bookList = document.getElementById('LibraryBooks');
 
     fetch('http://127.168.0.100:8000/list')
+<<<<<<< HEAD
+    .then((res) => res.json())
+    .then((list) => {
+        list.forEach(book => {
+        const row = bookList.insertRow();
+        row.insertCell().innerText = book.id;
+        row.insertCell().innerText = book.name;
+        row.insertCell().innerText = book.publisher;
+        row.insertCell().innerHTML = `<a class="btn" href="edit.html?id=${book.id}">変更</a>`;
+        row.insertCell().innerHTML = `<a class="btn" href="delete.html?id=${book.id}">削除</a>`;
+    });
+    })
+    .catch((err) => console.log(err))
+=======
         .then((res) => res.json())
         .then((list) => {
             list.forEach(book => {
@@ -52,4 +66,5 @@ function getData() {
             });
         })
         .catch((err) => console.log(err));
+>>>>>>> f9fdd938e7852c222e9be74d869640d9a051e543
 }
