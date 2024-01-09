@@ -37,19 +37,9 @@ function getData() {
 
                 // 変更ボタン
                 row.insertCell().innerHTML = `<a class="btn" href="edit.html?id=${book.id}">変更</a>`;
-
-                // 削除ボタン
-                const deleteButton = document.createElement('button');
-                const delete_id = document.getElementById('BookId');
-                deleteButton.className = 'btn';
-                deleteButton.innerText = '削除';
-                deleteButton.setAttribute('data-toggle', 'modal');
-                deleteButton.setAttribute('data-target', '#exampleModal');
-                deleteButton.addEventListener('click', function () {
-                    // モーダルに削除対象の書籍情報を渡す処理も追加できます
+                //削除ボタン
+                row.insertCell().innerHTML = `<button type="button" class="btn btn-primary delete-button" data-toggle="modal" data-target="#exampleModal" data-book-id="${book.id}">削除</button>`;
                 });
-                row.insertCell().innerHTML = `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">削除</button>`; 
             });
-        })
-        .catch((err) => console.log(err));
-}
+        }
+        
