@@ -7,8 +7,12 @@ function getData(){
         list.forEach(book => {
         const row = bookList.insertRow();
         row.insertCell().innerText = book.id;
-        row.insertCell().innerHTML = `<a href="/bookapp/fc/ad-book/detail?id=${book.id}">${book.name}</a>`;
+        row.insertCell().innerText = book.name;
         row.insertCell().innerText = book.publisher;
+        row.insertCell().innerText = book.author;
+        row.insertCell().innerText = book.page_count;
+        row.insertCell().innerText = book.published_date;
+        row.insertCell().innerText = book.price;
         row.insertCell().innerHTML = `<a class="btn" href="edit.html?id=${book.id}">変更</a>`;
         row.insertCell().innerHTML = `<a class="btn" href="delete.html?id=${book.id}">削除</a>`;
     });
