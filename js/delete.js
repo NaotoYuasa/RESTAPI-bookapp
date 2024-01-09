@@ -2,20 +2,41 @@
 ・削除処理をするjs
  */
 
-function getData(){
-    const bookList = document.getElementById('LibraryBooks');
+function openDeleteModal(bookId) {
+    // モーダルを表示
+    $('#deleteModal').modal('show');
 
-    fetch('http://127.168.0.100:8000/list')
-    .then((res) => res.json())
-    .then((list) => {
-        list.forEach(book => {
-        const row = bookList.insertRow();
-        row.insertCell().innerText = book.id;
-        row.insertCell().innerHTML = `<a href="/bookapp/fc/ad-book/detail?id=${book.id}">${book.name}</a>`;
-        row.insertCell().innerText = book.publisher;
-        row.insertCell().innerHTML = `<a class="btn" href="edit.html?id=${book.id}">変更</a>`;
-        row.insertCell().innerHTML = `<a class="btn" href="delete.html?id=${book.id}">削除</a>`;
+    // モーダル内の削除ボタンにクリックイベントを設定
+    $('#confirmDelete').on('click', function() {
+        // モーダルが確認されたら、削除処理を実行
+        deleteBook(bookId);
+
+        // モーダルを非表示にする
+        $('#deleteModal').modal('hide');
+
+        // イベントリスナーを削除
+        $('#confirmDelete').off('click');
     });
+}
+
+// 削除ボタンがクリックされたときにopenDeleteModalを呼び出す
+document.addEventListener('DOMContentLoaded', function() {
+    const deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const bookId = this.dataset.bookId;
+            openDeleteModal(bookId);
+        });
+    });
+});
+
+function deleteBook(bookId) {
+    fetch("http://127.168.0.100:8000/list/books_delete/${Id}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}), // 行のIDをリクエストボディに含める
     })
-    .catch((err) => console.log(err))
 }
