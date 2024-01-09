@@ -1,3 +1,7 @@
+/**
+・削除処理をするjs
+ */
+
 function getData(){
     const bookList = document.getElementById('LibraryBooks');
 
