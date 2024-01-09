@@ -5,12 +5,12 @@ function openModalRegister(){
 
     // Populate the modal with form data
     var formData = {
-        '書籍名': document.getElementById('name').value,
-        '出版社': document.getElementById('publisher').value,
-        '著者': document.getElementById('author').value,
-        'ページ数': document.getElementById('page_count').value,
-        '出版日': document.getElementById('published_date').value,
-        '価格(税込)': document.getElementById('price').value
+        name: document.getElementById('name').value,
+        publisher: document.getElementById('publisher').value,
+        author: document.getElementById('author').value,
+        page_count: document.getElementById('page_count').value,
+        published_date: document.getElementById('published_date').value,
+        price: document.getElementById('price').value
     };
 
     var modalContent = document.getElementById('modalContent');
@@ -21,16 +21,24 @@ function openModalRegister(){
     }
 }
 
+function closeModalRegister() {
+    // Close the modal
+    document.getElementById('myModal').style.display = 'none';
+}
+
 function submitForm() {
-    // フォームデータを取得
+    // You can add your code here to send the JSON data to the server using AJAX
+    // For simplicity, let's just log the JSON data to the console
     var formData = {
         name: document.getElementById('name').value,
         publisher: document.getElementById('publisher').value,
         author: document.getElementById('author').value,
         page_count: document.getElementById('page_count').value,
-        published_date: document.getElementById('published_date').value,
+        published_date: document.getElementById('published_date').value.replace(/‐/g, '-'),
         price: document.getElementById('price').value
     };
+
+    console.log(JSON.stringify(formData));
 
     // フォームデータをJSONに変換
     var jsonData = JSON.stringify(formData);
@@ -44,8 +52,19 @@ function submitForm() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             // リクエスト成功時の処理
             console.log(xhr.responseText);
+
+             // 登録完了モーダルを表示
+             document.getElementById('registerCompleteModal').style.display = 'block';
         }
     };
 
     xhr.send(jsonData);
+
+    // Close the modal after submitting
+    closeModalRegister();
+}
+
+function closeRegisterCompleteModal() {
+    // Close the register complete modal
+    document.getElementById('registerCompleteModal').style.display = 'none';
 }

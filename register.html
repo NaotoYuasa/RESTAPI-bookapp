@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>書籍登録</title>
-    <!-- <link rel="stylesheet" type="text/css" href="/bookapp/css/style.css" /> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/register.js"></script>
 </head>
 <body>
@@ -26,6 +26,28 @@
     <div><button onclick="history.back()">戻る</button></div>
 
     <!-- 書籍登録(modal-register)モーダル -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close" onclick="closeModalRegister()">&times;</span>
+          <h2>登録内容確認</h2>
+          <p id="modalContent"></p>
+          <button onclick="submitForm()">送信</button>
+        </div>
+      
+    </div>
+
+    <!-- 登録完了(modal-complete)モーダル -->
+    <div id="registerCompleteModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h2>登録完了</h2>
+            <p>登録が完了しました！</p>
+            <button onclick="closeRegisterCompleteModal()">閉じる</button>
+        </div>
     
+    </div>
 </body>
 </html>
