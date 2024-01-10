@@ -17,3 +17,9 @@ h1,h2{
     margin: auto;
     width: 60%;
 }
+
+#float_edit{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

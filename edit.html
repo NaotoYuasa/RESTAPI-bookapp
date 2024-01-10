@@ -27,17 +27,18 @@
             <tr><th>出版日</th><td><input type="text" name="published_date" id="published_date"></td></tr>
             <tr><th>価格(税込)</th><td><input type="text" name="price" id="price"></td></tr>
         </table>
+        <div id="float_edit">
         <button type="button" class="btn btn-info" onclick="openModalEdit()">変更</button>
     </form>
     <div><button class="btn btn-info" onclick="history.back()">戻る</button></div>
-
+        </div>
     <!-- 書籍内容変更(modal-edit)モーダル -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">変更内容確認</h1>
-              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
             </div>
