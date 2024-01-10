@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = async function() {
     // 変更: URLからidを抽出してhidden inputのvalueに設定
     var url = new URL(window.location.href);
     var bookId = url.searchParams.get("id");
@@ -6,7 +6,7 @@ window.onload = function() {
 };
 
 // 変更: idを取得してモーダルを表示する処理を実行
-function openModalEdit() {
+async function openModalEdit() {
     // Bootstrapモーダルを表示
     $('#exampleModal').modal('show');
 
@@ -33,12 +33,12 @@ function openModalEdit() {
 }
 
 // Bootstrapモーダルを閉じる処理
-function closeModalEdit() {
+async function closeModalEdit() {
     $('#exampleModal').modal('hide');
 }
 
 // 変更: idを取得して送信処理を実行
-function submitForm() {
+async function submitForm() {
     // JSONデータをサーバーに送信するためのコードを追加することができます
     // 簡単のため、JSONデータをコンソールに表示するだけにしています
     var formData = {

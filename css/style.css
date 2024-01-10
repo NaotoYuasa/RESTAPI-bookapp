@@ -2,12 +2,15 @@ body{
     text-align: center;
 }
 h1,h2{
-    margin-top: 40px;
+    margin: 30px;
 }
 .link{
     margin-top: 40px;
 }
 .btn{
+    margin: 8px;
+}
+.btn.btn-info{
     margin: 8px;
 }
 .table.table-bordered.border-primary{
