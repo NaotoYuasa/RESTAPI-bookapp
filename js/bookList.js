@@ -5,7 +5,7 @@ function getData() {
     fetch('http://127.168.0.100:8000/list')
         .then((res) => res.json())
         .then((list) => {
-            list.sort((a, b) => b.id - a.id);
+            list.sort((a, b) => a.id - b.id);
             list.forEach(book => {
                 const row = bookList.insertRow();
                 row.insertCell().innerText = book.id;

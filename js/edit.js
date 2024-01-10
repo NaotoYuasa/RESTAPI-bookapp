@@ -42,14 +42,14 @@ async function submitForm() {
     // JSONデータをサーバーに送信するためのコードを追加することができます
     // 簡単のため、JSONデータをコンソールに表示するだけにしています
     var formData = {
-        id: $('#bookId').val(),
-        name: $('#name').val(),
-        publisher: $('#publisher').val(),
-        author: $('#author').val(),
-        page_count: $('#page_count').val(),
-        published_date: $('#published_date').val().replace(/‐/g, '-'),
-        price: $('#price').val()
-    };
+    id: $('#bookId').val(),
+    name: $('#name').val(),
+    publisher: $('#publisher').val(),
+    author: $('#author').val(),
+    page_count: $('#page_count').val() !== '' ? $('#page_count').val() : null,
+    published_date: $('#published_date').val() !== '' ? $('#published_date').val().replace(/-/g, '') : null,
+    price: $('#price').val() !== '' ? $('#price').val() : null
+};
 
     console.log(JSON.stringify(formData));
 
