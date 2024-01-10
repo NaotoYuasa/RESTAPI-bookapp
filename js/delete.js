@@ -57,9 +57,10 @@ async function deleteForm() {
     xhr.send(jsonData);
 
     $('#deleteCompleteModal').modal('show');
+    
+closeModaldelete();
 }
 
-// closeModaldelete();
 
 
 // Bootstrapモーダルを閉じた際にモーダルの中身をクリアする
