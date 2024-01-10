@@ -1,66 +1,62 @@
-document.addEventListener('DOMContentLoaded', function () {
+window.onload = async function() {
+    // 削除: URLからidを抽出してhidden inputのvalueに設定
+    const url = new URL(window.location.href);
+    const bookId = url.searchParams.get("id");
+    const name = url.searchParams.get("name");
+    document.getElementById('bookId').value = bookId;
+    document.getElementById('name').value = name;
+};
 
-    const deleteButtons = document.querySelectorAll('.delete-button');
+// 削除: idを取得して送信処理を実行
+async function openModaldelete() {
+    // モーダルを表示する
+    document.getElementById('myModal').style.display = 'block';
+    
+    // フォームデータでモーダルを埋める
+    const formData = {
+        id: document.getElementById('bookId').value,
+        name: document.getElementById('name').value,
+        
+    };
 
-    deleteButtons.forEach(deleteButton => {
-        deleteButton.addEventListener('click', function () {
-            // クリックされたボタンからdata-book-id属性を取得
-            const bookId = this.dataset.bookId;
+    const modalContent = document.getElementById('modalContent');
+    modalContent.innerHTML = '';
 
-            setBookIdToDelete(bookId);
+    for (const key in formData) {
+        modalContent.innerHTML += '<strong>' + key + ':</strong> ' + formData[key] + '<br>';
+    }
+}
 
-            const modalDeleteButton = document.getElementById('deleteButton');
-            modalDeleteButton.dataset.bookId = bookId;
+async function closeModaldelete() {
+    
+    document.getElementById('myModal').style.display = 'none';
+}
 
-            modalDeleteButton.addEventListener('click', function () {
+async function deletetForm() {
 
-        // APIに対して削除リクエストを送信
-        fetch(`http://127.168.0.100:8000/books_delete/${bookIdToDelete}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({})
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // レスポンスをコンソールに出力
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    });
-});
-        // ボタンがクリックされたときの処理
-        function setBookIdToDelete(BookId) {
-            currentBookIdToDelete = bookId;
-        }
-});
+    let formData = {
+        id: document.getElementById('bookId').value,
+        name: document.getElementById('name').value,
+    };
 
-// function openDeleteModal(delete_id){
-//                 // 削除ボタン処理
-//                 const deleteButton = document.createElement('button');
-//                 deleteButton.className = 'btn';
-//                 deleteButton.innerText = '削除';
-//                 deleteButton.setAttribute('data-toggle', 'modal');
-//                 deleteButton.setAttribute('data-target', '#exampleModal');
+    console.log(JSON.stringify(formData));
 
+    // フォームデータをJSONに変換
+    var jsonData = JSON.stringify(formData);
 
-//                 deleteButton.addEventListener('click', function () {
+    // AJAXを使用してサーバーにデータを送信
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://127.168.0.100:8000/books_delete/"+ encodeURIComponent(formData.id), true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+     // 登録完了モーダルを表示
+    document.getElementById('deleteCompleteModal').style.display = 'block';
+        
+    xhr.send(jsonData);
 
-//                         // モーダルに削除対象の書籍情報を表示
-//                         const modalTitle = document.querySelector('.modal-title');
-//                         const modalBody = document.querySelector('.modal-body');
-            
-//                         // モーダルに書籍情報を表示
-//                         modalTitle.innerText = '削除ページ';
-            
-//                         // 削除ボタンに付加したidを取得
-//                         const bookIdToDelete = deleteButton.dataset.bookId;
-            
-//                         // モーダル内の削除ボタンにidをセット
-//                         const modalDeleteButton = document.querySelector('.modal-footer .btn-primary');
-//                         modalDeleteButton.dataset.bookIdToDelete = bookIdToDelete;
-//                     });
-            
-//                     row.insertCell().appendChild(deleteButton)
-//                 
+    closeModaldelete();
+}
+
+async function deleteCompleteModal(){
+    
+    document.getElementById('deleteCompleteModal').style.display = 'none';
+}

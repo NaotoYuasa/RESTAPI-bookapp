@@ -56,8 +56,10 @@ async function submitForm() {
             // リクエスト成功時の処理
             console.log(data);
 
+
             // 登録完了モーダルを表示
             $('#registerCompleteModal').modal('show');
+
         }
     });
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>書籍</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/delete.js"></script>
+</head>
+<body>
+
+    <h2>書籍削除</h2>
+    <form id="deleteForm">
+        <input type="hidden" id="bookId" name="id" value="">
+        <table border="1">
+            <tr><th>書籍名</th><td><input type="text" id="name"></td></tr>
+        </table>
+        <button type="button" onclick="openModaldelete()">削除</button>
+    </form>
+    <div><button onclick="history.back()">戻る</button></div>
+
+    <!-- 書籍削除モーダル -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModaldelete()">&times;</span>
+            <h2>削除内容確認</h2>
+            <p id="modalContent"></p>
+            <button onclick="deletetForm()">削除</button>
+        </div>
+        
+    </div>
+
+    <!-- 削除完了(modal-complete)モーダル -->
+    <div id="deleteCompleteModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h2>削除完了</h2>
+            <p>削除が完了しました！</p>
+            <button onclick="deleteCompleteModal()">閉じる</button>
+        </div>
+    
+    </div>
+</body>
+</html>

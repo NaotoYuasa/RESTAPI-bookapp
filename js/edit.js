@@ -66,8 +66,10 @@ async function submitForm() {
             // リクエスト成功時の処理
             console.log(data);
 
+
             // 変更完了モーダルを表示
             $('#editCompleteModal').modal('show');
+
         }
     });
 
