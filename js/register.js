@@ -1,42 +1,44 @@
-//本の新規登録用のモーダルを開く(フォーム入力された確認画面)
-function openModalRegister(){
-    // モーダルを表示する
-    document.getElementById('myModal').style.display = 'block';
+// 本の新規登録用のモーダルを開く(フォーム入力された確認画面)
+function openModalRegister() {
+    // Bootstrapモーダルを表示
+    $('#exampleModal').modal('show');
 
     // フォームデータでモーダルを埋める
     var formData = {
-        name: document.getElementById('name').value,
-        publisher: document.getElementById('publisher').value,
-        author: document.getElementById('author').value,
-        page_count: document.getElementById('page_count').value,
-        published_date: document.getElementById('published_date').value,
-        price: document.getElementById('price').value
+        name: $('#name').val(),
+        publisher: $('#publisher').val(),
+        author: $('#author').val(),
+        page_count: $('#page_count').val(),
+        published_date: $('#published_date').val(),
+        price: $('#price').val()
     };
 
-    var modalContent = document.getElementById('modalContent');
-    modalContent.innerHTML = '';
+    var modalBody = $('.modal-body');
+    modalBody.empty();
 
     // フォームデータを使ってモーダルのコンテンツを構築する
     for (var key in formData) {
-        modalContent.innerHTML += '<strong>' + key + ':</strong> ' + formData[key] + '<br>';
+        modalBody.append('<p><strong>' + key + ':</strong> ' + formData[key] + '</p>');
     }
 }
 
+// Bootstrapモーダル
 function closeModalRegister() {
-    // Close the modal
-    document.getElementById('myModal').style.display = 'none';
+    $('#exampleModal').modal('hide');
+    $('#registerCompleteModal').modal('hide');
 }
 
+// Bootstrapモーダル
 function submitForm() {
-    // You can add your code here to send the JSON data to the server using AJAX
-    // For simplicity, let's just log the JSON data to the console
+    // JSONデータをサーバーに送信するためのコードを追加することができます
+    // 簡単のため、JSONデータをコンソールに表示するだけにしています
     var formData = {
-        name: document.getElementById('name').value,
-        publisher: document.getElementById('publisher').value,
-        author: document.getElementById('author').value,
-        page_count: document.getElementById('page_count').value,
-        published_date: document.getElementById('published_date').value.replace(/‐/g, '-'),
-        price: document.getElementById('price').value
+        name: $('#name').val(),
+        publisher: $('#publisher').val(),
+        author: $('#author').val(),
+        page_count: $('#page_count').val(),
+        published_date: $('#published_date').val().replace(/‐/g, '-'),
+        price: $('#price').val()
     };
 
     console.log(JSON.stringify(formData));
@@ -45,27 +47,31 @@ function submitForm() {
     var jsonData = JSON.stringify(formData);
 
     // AJAXを使用してサーバーにデータを送信
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.168.0.100:8000/books_regist", true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.168.0.100:8000/books_regist',
+        contentType: 'application/json;charset=UTF-8',
+        data: jsonData,
+        success: function (data) {
             // リクエスト成功時の処理
-            console.log(xhr.responseText);
+            console.log(data);
 
-             // 登録完了モーダルを表示
-             document.getElementById('registerCompleteModal').style.display = 'block';
+            // 登録完了モーダルを表示
+            $('#registerCompleteModal').modal('show');
         }
-    };
+    });
 
-    xhr.send(jsonData);
-
-    // Close the modal after submitting
+    // 送信後にモーダルを閉じる
     closeModalRegister();
 }
 
+// Bootstrapモーダル
 function closeRegisterCompleteModal() {
-    // Close the register complete modal
-    document.getElementById('registerCompleteModal').style.display = 'none';
+    $('#registerCompleteModal').modal('hide');
 }
+
+// Bootstrapモーダルが非表示になった際にモーダルの中身をクリアする
+$('#exampleModal').on('hidden.bs.modal', function () {
+    // モーダルが非表示になったら中身をクリア
+    $('.modal-body').empty();
+});
