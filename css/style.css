@@ -17,6 +17,14 @@ h1,h2{
     margin: auto;
     width: 60%;
 }
+
+
+#float_edit{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
 .table.table-bordered.border-primary.home{
     margin: auto;
     width: 90%;
@@ -32,3 +40,4 @@ h1,h2{
 .btn-info.home {
     margin-left: 40px; /* ボタンとh2の間に余白を設ける */
 }
+
