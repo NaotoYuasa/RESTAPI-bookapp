@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/edit.js"></script>
-    <script src="js/back.js"></script>
 </head>
 <body>
     <header>
@@ -32,7 +31,7 @@
         </table>
         <button type="button" class="btn btn-info" onclick="openModalEdit()">変更</button>
     </form>
-    <div><button class="btn btn-info" id="backButton">戻る</button></div>
+    <div><button class="btn btn-info" onclick="history.back()">戻る</button></div>
 
     <!-- 書籍内容変更(modal-edit)モーダル -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
