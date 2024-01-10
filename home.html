@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <title>書籍一覧</title>
     <script src="js/bookList.js"></script>
-    <script src="js/delete.js"></script>
     <script src="js/back.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="getData()";>
 
-    <h2>書籍一覧</h2>
-    <table border="1" id="LibraryBooks">
+    <div class="container">
+        <h2 class="home-title">書籍一覧</h2>
+        <button class="btn btn-info home" onclick="history.back()">戻る</button>
+    </div>
+    <table class="table table-bordered border-primary home" id="LibraryBooks">
         <thead>
         <tr>
             <th>id</th>
@@ -20,12 +25,11 @@
             <th>ページ数</th>
             <th>日付</th>
             <th>価格</th>
-            <th>変更</th>
-            <th>削除</th>
+            <th>変更ボタン</th>
+            <th>削除ボタン</th>
         </tr>
     </thead>
     </table>
 
-<div><button onclick="history.back()">戻る</button></div>
 </body>
 </html>
