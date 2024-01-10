@@ -41,3 +41,14 @@ h1,h2{
     margin-left: 40px; /* ボタンとh2の間に余白を設ける */
 }
 
+.btn-container {
+    margin-bottom: 10px;
+}
+
+.btn-back {
+    margin-right: 10px;
+}
+
+.btn-delete {
+    margin-left: 10px;
+}

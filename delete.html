@@ -14,17 +14,20 @@
 </head>
 <body>
 
-    <h2>書籍削除</h2>
-    <form id="deleteForm">
-        <input type="hidden" id="bookId" name="id" value="">
-        <table border="1">
-            <tr><th>書籍名</th><td><input type="text" id="name"></td></tr>
-        </table>
-        <div id="float_edit">
-        <button type="button" onclick="openModaldelete()">削除</button>
-    </form>
-    <div><button onclick="history.back()">戻る</button></div>
-      </div>
+  <h2>書籍削除</h2>
+  <form id="deleteForm">
+      <input type="hidden" id="bookId" name="id" value="">
+      <table class="table table-bordered border-primary">
+          <tr><th>書籍名</th><td><input type="text" id="name"></td></tr>
+      </table>
+  </form>
+
+  <div class="btn-container">
+      <button type="button" class="btn btn-info btn-back" onclick="history.back()">戻る</button>
+      <button type="button" class="btn btn-info btn-delete" onclick="openModaldelete()">削除</button>
+  </div>
+      
+
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
