@@ -1,5 +1,5 @@
 // 本の新規登録用のモーダルを開く(フォーム入力された確認画面)
-function openModalRegister() {
+async function openModalRegister() {
     // Bootstrapモーダルを表示
     $('#exampleModal').modal('show');
 
@@ -23,13 +23,13 @@ function openModalRegister() {
 }
 
 // Bootstrapモーダル
-function closeModalRegister() {
+async function closeModalRegister() {
     $('#exampleModal').modal('hide');
     $('#registerCompleteModal').modal('hide');
 }
 
 // Bootstrapモーダル
-function submitForm() {
+async function submitForm() {
     // JSONデータをサーバーに送信するためのコードを追加することができます
     // 簡単のため、JSONデータをコンソールに表示するだけにしています
     var formData = {
@@ -66,7 +66,7 @@ function submitForm() {
 }
 
 // Bootstrapモーダル
-function closeRegisterCompleteModal() {
+async function closeRegisterCompleteModal() {
     $('#registerCompleteModal').modal('hide');
 }
 

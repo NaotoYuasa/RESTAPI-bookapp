@@ -1,53 +1,54 @@
-window.onload = function() {
+window.onload = async function() {
     // 変更: URLからidを抽出してhidden inputのvalueに設定
     var url = new URL(window.location.href);
     var bookId = url.searchParams.get("id");
     document.getElementById('bookId').value = bookId;
 };
 
-// 変更: idを取得して送信処理を実行
-function openModalEdit() {
-    // var bookId = document.getElementById('bookId').value;
-
-    // モーダルを表示する
-    document.getElementById('myModal').style.display = 'block';
+// 変更: idを取得してモーダルを表示する処理を実行
+async function openModalEdit() {
+    // Bootstrapモーダルを表示
+    $('#exampleModal').modal('show');
 
     // フォームデータでモーダルを埋める
     var formData = {
-        id: document.getElementById('bookId').value,
-        name: document.getElementById('name').value,
-        publisher: document.getElementById('publisher').value,
-        author: document.getElementById('author').value,
-        page_count: document.getElementById('page_count').value,
-        published_date: document.getElementById('published_date').value,
-        price: document.getElementById('price').value
+        id: $('#bookId').val(),
+        name: $('#name').val(),
+        publisher: $('#publisher').val(),
+        author: $('#author').val(),
+        page_count: $('#page_count').val(),
+        published_date: $('#published_date').val(),
+        price: $('#price').val()
     };
 
-    var modalContent = document.getElementById('modalContent');
-    modalContent.innerHTML = '';
+    var modalBody = $('.modal-body');
+    modalBody.empty();
 
     // フォームデータを使ってモーダルのコンテンツを構築する
     for (var key in formData) {
-        modalContent.innerHTML += '<strong>' + key + ':</strong> ' + formData[key] + '<br>';
+        if(key != 'id'){
+            modalBody.append('<p><strong>' + key + ':</strong> ' + formData[key] + '</p>');
+        }
     }
 }
 
-function closeModalEdit() {
-    // Close the modal
-    document.getElementById('myModal').style.display = 'none';
+// Bootstrapモーダルを閉じる処理
+async function closeModalEdit() {
+    $('#exampleModal').modal('hide');
 }
 
-function submitForm() {
-    // You can add your code here to send the JSON data to the server using AJAX
-    // For simplicity, let's just log the JSON data to the console
+// 変更: idを取得して送信処理を実行
+async function submitForm() {
+    // JSONデータをサーバーに送信するためのコードを追加することができます
+    // 簡単のため、JSONデータをコンソールに表示するだけにしています
     var formData = {
-        id: document.getElementById('bookId').value,
-        name: document.getElementById('name').value,
-        publisher: document.getElementById('publisher').value,
-        author: document.getElementById('author').value,
-        page_count: document.getElementById('page_count').value,
-        published_date: document.getElementById('published_date').value.replace(/‐/g, '-'),
-        price: document.getElementById('price').value
+        id: $('#bookId').val(),
+        name: $('#name').val(),
+        publisher: $('#publisher').val(),
+        author: $('#author').val(),
+        page_count: $('#page_count').val(),
+        published_date: $('#published_date').val().replace(/‐/g, '-'),
+        price: $('#price').val()
     };
 
     console.log(JSON.stringify(formData));
@@ -56,27 +57,32 @@ function submitForm() {
     var jsonData = JSON.stringify(formData);
 
     // AJAXを使用してサーバーにデータを送信
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://127.168.0.100:8000/books_update/"+ encodeURIComponent(formData.id), true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.168.0.100:8000/books_update/' + encodeURIComponent(formData.id),
+        contentType: 'application/json;charset=UTF-8',
+        data: jsonData,
+        success: function (data) {
             // リクエスト成功時の処理
-            console.log(xhr.responseText);
+            console.log(data);
 
-             // 登録完了モーダルを表示
-             document.getElementById('editCompleteModal').style.display = 'block';
+            // 変更完了モーダルを表示
+            $('#editCompleteModal').modal('show');
         }
-    };
+    });
 
-    xhr.send(jsonData);
-
-    // Close the modal after submitting
+    // 送信後にモーダルを閉じる
     closeModalEdit();
 }
 
-function closeEditCompleteModal() {
-    // Close the register complete modal
-    document.getElementById('editCompleteModal').style.display = 'none';
-}
+// Bootstrapモーダルを閉じた際にモーダルの中身をクリアする
+$('#exampleModal').on('hidden.bs.modal', function () {
+    // モーダルが非表示になったら中身をクリア
+    $('.modal-body').empty();
+});
+
+// Bootstrapモーダルが非表示になった際に変更完了モーダルの中身をクリアする
+$('#editCompleteModal').on('hidden.bs.modal', function () {
+    // モーダルが非表示になったら中身をクリア
+    $('.modal-body').empty();
+});

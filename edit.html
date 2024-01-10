@@ -2,20 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>書籍変更</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>書籍内容変更</title>
+    <!-- Bootstrap JS (必要であればjQueryも含めて読み込む) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/edit.js"></script>
+    <script src="js/back.js"></script>
 </head>
 <body>
     <header>
         <!-- Include your header content here -->
     </header>
 
-    <h2>書籍変更</h2>
+    <h2>書籍内容変更</h2>
     <form id="editForm">
         <!-- 変更: hidden input要素でidをURLから抽出して設定する -->
         <input type="hidden" id="bookId" name="id" value="">
-        <table border="1">
+        <table class="table table-bordered border-primary">
             <tr><th>書籍名</th><td><input type="text" name="name" id="name"></td></tr>
             <tr><th>出版社</th><td><input type="text" name="publisher" id="publisher"></td></tr>
             <tr><th>著者</th><td><input type="text" name="author" id="author"></td></tr>
@@ -23,32 +30,44 @@
             <tr><th>出版日</th><td><input type="text" name="published_date" id="published_date"></td></tr>
             <tr><th>価格(税込)</th><td><input type="text" name="price" id="price"></td></tr>
         </table>
-        <button type="button" onclick="openModalEdit()">変更</button>
+        <button type="button" class="btn btn-info" onclick="openModalEdit()">変更</button>
     </form>
-    <div><button onclick="history.back()">戻る</button></div>
+    <div><button class="btn btn-info" onclick="goBack()">戻る</button></div>
 
     <!-- 書籍内容変更(modal-edit)モーダル -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" onclick="closeModalEdit()">&times;</span>
-            <h2>変更内容確認</h2>
-            <p id="modalContent"></p>
-            <button onclick="submitForm()">送信</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">変更内容確認</h1>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <button type="button" class="btn btn-info" onclick="submitForm()">変更</button>
+            </div>
+          </div>
         </div>
-        
-    </div>
+      </div>
 
     <!-- 変更完了(modal-complete)モーダル -->
-    <div id="editCompleteModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <h2>変更完了</h2>
-            <p>変更が完了しました！</p>
-            <button onclick="closeEditCompleteModal()">閉じる</button>
+    <div class="modal" id="editCompleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">変更完了</h1>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>変更が完了しました！</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            </div>
+          </div>
         </div>
-    
-    </div>
+      </div>
 </body>
 </html>
