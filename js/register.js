@@ -55,7 +55,7 @@ function submitForm() {
             console.log(xhr.responseText);
 
              // 登録完了モーダルを表示
-             document.getElementById('registerCompleteModal').style.display = 'block';
+            document.getElementById('registerCompleteModal').style.display = 'block';
         }
     };
 
