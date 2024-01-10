@@ -10,7 +10,7 @@ window.onload = async function() {
 // 削除: idを取得して送信処理を実行
 async function openModaldelete() {
     // モーダルを表示する
-    document.getElementById('myModal').style.display = 'block';
+    $('#exampleModal').modal('show');
     
     // フォームデータでモーダルを埋める
     const formData = {
@@ -19,20 +19,23 @@ async function openModaldelete() {
         
     };
 
-    const modalContent = document.getElementById('modalContent');
-    modalContent.innerHTML = '';
+    var modalBody = $('.modal-body');
+    modalBody.empty();
+    // const modalContent = document.getElementById('modalContent');
+    // modalContent.innerHTML = '';
 
     for (const key in formData) {
-        modalContent.innerHTML += '<strong>' + key + ':</strong> ' + formData[key] + '<br>';
+        if(key != 'id'){
+            modalBody.append('<p><strong>' + '書籍' + ':</strong> ' + formData[key] + '</p>');
+        }
     }
 }
 
 async function closeModaldelete() {
-    
-    document.getElementById('myModal').style.display = 'none';
+    $('#exampleModal').modal('hide');
 }
 
-async function deletetForm() {
+async function deleteForm() {
 
     let formData = {
         id: document.getElementById('bookId').value,
@@ -53,10 +56,20 @@ async function deletetForm() {
         
     xhr.send(jsonData);
 
-    closeModaldelete();
+    $('#deleteCompleteModal').modal('show');
 }
 
-async function deleteCompleteModal(){
-    
-    document.getElementById('deleteCompleteModal').style.display = 'none';
-}
+// closeModaldelete();
+
+
+// Bootstrapモーダルを閉じた際にモーダルの中身をクリアする
+$('#exampleModal').on('hidden.bs.modal', function () {
+    // モーダルが非表示になったら中身をクリア
+    $('.modal-body').empty();
+});
+
+// Bootstrapモーダルが非表示になった際に変更完了モーダルの中身をクリアする
+$('#editCompleteModal').on('hidden.bs.modal', function () {
+    // モーダルが非表示になったら中身をクリア
+    $('.modal-body').empty();
+});
