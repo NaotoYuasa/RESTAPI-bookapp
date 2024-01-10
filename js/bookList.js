@@ -17,9 +17,9 @@ function getData() {
                 row.insertCell().innerText = book.price;
 
                 // 変更ボタン
-                row.insertCell().innerHTML = `<a class="btn" href="edit.html?id=${book.id}">変更</a>`;
+                row.insertCell().innerHTML = `<a class="btn btn-info" href="edit.html?id=${book.id}">変更</a>`;
                 //削除ボタン
-                row.insertCell().innerHTML = `<a class="btn" href="delete.html?id=${book.id}&name=${book.name}">削除</a>`;
+                row.insertCell().innerHTML = `<a class="btn btn-info" href="delete.html?id=${book.id}&name=${book.name}">削除</a>`;
                 });
             });
         }

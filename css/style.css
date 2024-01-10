@@ -17,3 +17,18 @@ h1,h2{
     margin: auto;
     width: 60%;
 }
+.table.table-bordered.border-primary.home{
+    margin: auto;
+    width: 90%;
+}
+.container {
+    display: flex;
+    align-items: center;
+    margin: 30px;
+}
+.home-title {
+    margin: auto 
+}
+.btn-info.home {
+    margin-left: 40px; /* ボタンとh2の間に余白を設ける */
+}
