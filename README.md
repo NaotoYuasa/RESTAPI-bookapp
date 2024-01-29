@@ -1,4 +1,5 @@
 devは避難所　mainにあげてく
+
 deployが本番用、IPアドレス等修正してあります。
 
 localStrageに入れて渡す方法を試す
