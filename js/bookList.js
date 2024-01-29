@@ -2,7 +2,7 @@
 function getData() {
     const bookList = document.getElementById('LibraryBooks');
 
-    fetch('http://127.168.0.100:8000/list')
+    fetch('http://192.168.56.1:8000/list')
         .then((res) => res.json())
         .then((list) => {
             list.sort((a, b) => a.id - b.id);

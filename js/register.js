@@ -50,7 +50,7 @@ async function submitForm() {
     // AJAXを使用してサーバーにデータを送信
     $.ajax({
         type: 'POST',
-        url: 'http://127.168.0.100:8000/books_regist',
+        url: 'http://192.168.56.1:8000/books_regist',
         contentType: 'application/json;charset=UTF-8',
         data: jsonData,
         success: function (data) {
