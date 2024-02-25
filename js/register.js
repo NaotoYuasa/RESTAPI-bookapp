@@ -39,7 +39,8 @@ async function submitForm() {
         author: $('#author').val(),
         page_count: $('#page_count').val() !== '' ? $('#page_count').val() : null,
         published_date: $('#published_date').val() !== '' ? $('#published_date').val().replace(/-/g, '') : null,
-        price: $('#price').val() !== '' ? $('#price').val() : null
+        price: $('#price').val() !== '' ? $('#price').val() : null,
+        registered_user: 'test_user_01'
     };
 
     console.log(JSON.stringify(formData));
@@ -50,7 +51,7 @@ async function submitForm() {
     // AJAXを使用してサーバーにデータを送信
     $.ajax({
         type: 'POST',
-        url: 'http://192.168.56.1:8000/books_regist',
+        url: 'http://192.168.10.49:8000/books_regist',
         contentType: 'application/json;charset=UTF-8',
         data: jsonData,
         success: function (data) {

@@ -49,7 +49,7 @@ async function deleteForm() {
 
     // AJAXを使用してサーバーにデータを送信
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://192.168.56.1:8000/books_delete/"+ encodeURIComponent(formData.id), true);
+    xhr.open("POST", "http://192.168.10.49:8000/books_delete/"+ encodeURIComponent(formData.id), true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
      // 登録完了モーダルを表示
     document.getElementById('deleteCompleteModal').style.display = 'block';
